@@ -26,7 +26,8 @@ module.exports = {
       'vue$': 'vue/dist/vue.common.js',
       'src': path.resolve(__dirname, '../src'),
       'assets': path.resolve(__dirname, '../src/assets'),
-      'components': path.resolve(__dirname, '../src/components')
+      'components': path.resolve(__dirname, '../src/components'),
+      'sources': path.resolve(__dirname, '../src/sources')
     }
   },
   resolveLoader: {
@@ -75,6 +76,10 @@ module.exports = {
           limit: 10000,
           name: utils.assetsPath('img/[name].[hash:7].[ext]')
         }
+      },
+      {
+        test: /\.md$/,
+        loader: 'html!markdown'
       },
       {
         test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,

@@ -39,5 +39,11 @@ export default {
       width: 200px;
       height: 100%;
     }
+
+    .main-content {
+      flex: 1;
+      max-height: 100%;
+      overflow-y: auto;
+    }
   }
 </style>
