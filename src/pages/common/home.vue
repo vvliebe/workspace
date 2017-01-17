@@ -1,6 +1,6 @@
 <template lang="html">
   <section id='workspace'>
-    <el-menu :default-active="activeMenu" router class="menu-bar">
+    <el-menu theme="dark" :default-active="activeMenu" router class="menu-bar">
       <template v-for="(route, index) in $router.options.routes[$router.options.routes.length - 2].children">
         <template v-if="route.isSubmenu">
           <el-submenu :index="route.name">
