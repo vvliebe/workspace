@@ -21,9 +21,9 @@
       </el-menu>
 
       <div class="nav-footer">
-        <div class="social">
-
-        </div>
+        <a :href="link.targetUrl" class="social" v-for="link in socialLinks">
+          <img :src="link.imgSrc">
+        </a>
       </div>
     </div>
 
@@ -35,10 +35,12 @@
 </template>
 
 <script>
+import socialLinks from 'const/social-links'
 export default {
   data() {
     return {
-      activeMenu: ''
+      activeMenu: '',
+      socialLinks
     }
   }
 }
@@ -74,6 +76,18 @@ export default {
       }
       .nav-footer {
         height: 100px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        .social {
+          width: 45px;
+          height: 45px;
+          img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+          }
+        }
       }
     }
 

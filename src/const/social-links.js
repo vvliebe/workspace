@@ -7,20 +7,20 @@ export default [
   },
   {
     name: 'zhihu',
-    imgSrc: '',
+    imgSrc: 'https://ojzjy557i.qnssl.com/images/zhihu.jpg',
     targetUrl: 'https://www.zhihu.com/people/vvliebe/activities',
     title: '知乎'
   },
   {
     name: 'blog',
-    imgSrc: '',
-    targetUrl: '',
+    imgSrc: 'https://o0p2g4ul8.qnssl.com/favicon.ico',
+    targetUrl: 'https://blog.vvliebe.com',
     title: '博客'
   },
   {
     name: 'LinkedIn',
-    imgSrc: '',
-    targetUrl: '',
+    imgSrc: 'https://ojzjy557i.qnssl.com/images/linkedin.png',
+    targetUrl: 'http://www.linkedin.com/in/vvliebe',
     title: '领英'
   }
 ]

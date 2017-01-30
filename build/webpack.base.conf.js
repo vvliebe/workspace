@@ -28,7 +28,7 @@ module.exports = {
       'assets': path.resolve(__dirname, '../src/assets'),
       'components': path.resolve(__dirname, '../src/components'),
       'resources': path.resolve(__dirname, '../src/resources'),
-      'config': path.resolve(__dirname, '../src/config')
+      'const': path.resolve(__dirname, '../src/const')
     }
   },
   resolveLoader: {
