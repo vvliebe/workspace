@@ -3,7 +3,7 @@
 
     <div class="nav">
       <div class="nav-header">
-        <img src="http://ojygpugo6.bkt.clouddn.com/images/workspace-avatar.jpeg">
+        <img src="https://ojzjy557i.qnssl.com/images/workspace-avatar.jpeg">
       </div>
 
       <el-menu :default-active="activeMenu" router class="menu-bar">
@@ -21,7 +21,9 @@
       </el-menu>
 
       <div class="nav-footer">
+        <div class="social">
 
+        </div>
       </div>
     </div>
 

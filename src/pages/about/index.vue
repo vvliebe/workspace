@@ -4,7 +4,7 @@
 
 <script>
 import markdown from 'components/markdown/index'
-import aboutPage from 'sources/md/about.md'
+import aboutPage from 'resources/md/about.md'
 export default {
   data() {
     return {
