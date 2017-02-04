@@ -1,6 +1,7 @@
 import Home from './pages/common/home'
 import About from './pages/about/index'
-import Test from './pages/test'
+import Alarm from './pages/demos/alarm/index'
+import vModal from './pages/demos/v-modal/index'
 
 const Abstract = {
   template: '<router-view></router-view>'
@@ -9,7 +10,7 @@ const Abstract = {
 const routes = [
   {
     path: '/',
-    redirect: { name: 'test' }
+    redirect: { name: '时钟' }
   },
   {
     path: '/',
@@ -22,10 +23,16 @@ const routes = [
         component: Abstract,
         children: [
           {
-            path: 'test',
-            name: 'test',
+            path: 'alarm',
+            name: '时钟',
             isMenuItem: true,
-            component: Test
+            component: Alarm
+          },
+          {
+            path: 'v-modal',
+            name: 'vue-modal',
+            isMenuItem: true,
+            component: vModal
           }
         ]
       },
