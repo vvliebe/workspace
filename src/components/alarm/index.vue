@@ -29,7 +29,9 @@ export default {
     },
     secondRotate() {
       let secondNum = this.time.getSeconds()
-      return `rotate(${secondNum * 6}deg)`
+      let msNum = this.time.getMilliseconds()
+
+      return `rotate(${(secondNum + msNum / 1000) * 6}deg)`
     }
   }
 }
@@ -92,38 +94,36 @@ $second-color: rgb(255, 0, 0);
   border-radius: 50%;
   background: $front-color;
 }
-.hour {
+.hour,
+.minute,
+.second {
   position: absolute;
-  width: $hour-width;
-  height: $hour-height;
   left: 50%;
   bottom: 50%;
+  transform-origin: bottom center;
+}
+
+.hour {
+  width: $hour-width;
+  height: $hour-height;
   margin-left: -$hour-width / 2;
   background: $hour-color;
   border-radius: 50% 50% 0 0;
-  transform-origin: bottom center;
 }
 .minute {
-  position: absolute;
   width: $minute-width;
   height: $minute-height;
-  left: 50%;
-  bottom: 50%;
   margin-left: -$minute-width / 2;
   background: $minute-color;
   border-radius: 50% 50% 0 0;
-  transform-origin: bottom center;
 }
 .second {
-  position: absolute;
   width: $second-width;
   height: $second-height;
-  left: 50%;
-  bottom: 50%;
   margin-left: -$second-width / 2;
   background: $second-color;
-  transform-origin: bottom center;
 }
+
 @for $i from 0 to 60 {
   .alarm-scale-box-#{$i} {
     transform-origin: bottom center;

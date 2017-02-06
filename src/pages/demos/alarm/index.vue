@@ -15,7 +15,7 @@ export default {
   created() {
     setInterval(() => {
       this.time = new Date()
-    }, 1000)
+    }, 60)
   },
   components: {
     alarm
