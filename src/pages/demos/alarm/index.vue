@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="demo-alarm-wrapper">
-    <alarm :time="time"></alarm>
+    <alarm :time="time" :size="300"></alarm>
   </div>
 </template>
 

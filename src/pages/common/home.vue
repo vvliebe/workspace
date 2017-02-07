@@ -42,6 +42,14 @@ export default {
       activeMenu: '',
       socialLinks
     }
+  },
+  created() {
+    this.activeMenu = this.$route.name
+  },
+  watch: {
+    '$route'(to, from) {
+      this.activeMenu = this.$route.name
+    }
   }
 }
 </script>

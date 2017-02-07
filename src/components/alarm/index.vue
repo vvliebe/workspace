@@ -1,44 +1,105 @@
 <template lang="html">
-  <div class="alarm-wrapper">
+  <div class="alarm-wrapper" :style="styles.alarmWrapper">
     <div
       :class="'alarm-scale-box alarm-scale-box-' + (num - 1)"
       v-for="num in 60">
-      <div class="alarm-scale"></div>
-      <div class="alarm-number" v-if="num % 5 === 1">{{(num - 1) / 5 || 12}}</div>
+      <div :style="styles.alarmScale" class="alarm-scale"></div>
+      <div :style="styles.alarmNumber" class="alarm-number" v-if="num % 5 === 1">{{(num - 1) / 5 || 12}}</div>
     </div>
-    <div :style="{transform: hourRotate}" class="hour"></div>
-    <div :style="{transform: minuteRotate}" class="minute"></div>
-    <div :style="{transform: secondRotate}" class="second"></div>
-    <div class="center"></div>
+    <div :style="styles.hour" class="hour"></div>
+    <div :style="styles.minute" class="minute"></div>
+    <div :style="styles.second" class="second"></div>
+    <div :style="styles.alarmCenter" class="center"></div>
   </div>
 </template>
 
 <script>
 export default {
-  props: ['time'],
+  props: {
+    time: {
+      type: Date,
+      required: true
+    },
+    size: {
+      type: Number,
+      default: 200,
+      validator: value => value >= 150
+    },
+    hourColor: {
+      type: String,
+      default: 'rgb(225, 225, 225)'
+    },
+    minuteColor: {
+      type: String,
+      default: 'rgb(200, 200, 200)'
+    },
+    secondColor: {
+      type: String,
+      default: 'rgb(255, 12, 12)'
+    },
+    bgColor: {
+      type: String,
+      default: 'rgba(0, 0, 0, .45)'
+    },
+    frontColor: {
+      type: String,
+      default: 'rgb(255, 255, 255)'
+    }
+  },
   computed: {
-    hourRotate() {
+    alarmSize() {
+      return this.size >= 150 ? this.size : 150
+    },
+    styles() {
+      // calc rotate angle
       let hourNum = this.time.getHours()
-      hourNum = hourNum > 12 ? hourNum - 12 : hourNum
       let minuteNum = this.time.getMinutes()
-      return `rotate(${hourNum * 30 + minuteNum / 2}deg)`
-    },
-    minuteRotate() {
-      let minuteNum = this.time.getMinutes()
-      return `rotate(${minuteNum * 6}deg)`
-    },
-    secondRotate() {
       let secondNum = this.time.getSeconds()
       let msNum = this.time.getMilliseconds()
+      hourNum = hourNum > 12 ? hourNum - 12 : hourNum
 
-      return `rotate(${(secondNum + msNum / 1000) * 6}deg)`
+      // calc pointer length
+      let hourHeight = this.alarmSize / 2 * 0.4
+      let minuteHeight = this.alarmSize / 2 * 0.6
+      let secondHeight = this.alarmSize / 2 * 0.8
+
+      return {
+        alarmWrapper: {
+          width: `${this.alarmSize}px`,
+          height: `${this.alarmSize}px`,
+          background: this.bgColor
+        },
+        hour: {
+          height: `${hourHeight}px`,
+          transform: `rotate(${hourNum * 30 + minuteNum / 2}deg)`,
+          background: this.hourColor
+        },
+        minute: {
+          height: `${minuteHeight}px`,
+          transform: `rotate(${minuteNum * 6}deg)`,
+          background: this.minuteColor
+        },
+        second: {
+          height: `${secondHeight}px`,
+          transform: `rotate(${(secondNum + msNum / 1000) * 6}deg)`,
+          background: this.secondColor
+        },
+        alarmNumber: {
+          color: this.frontColor
+        },
+        alarmScale: {
+          background: this.frontColor
+        },
+        alarmCenter: {
+          background: this.frontColor
+        }
+      }
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-$alarm-size: 200px;
 $scale-width-1: 2px;
 $scale-height-1: 8px;
 $scale-width-2: 3px;
@@ -47,34 +108,21 @@ $hour-width: 20px;
 
 $minute-width: 20px;
 $second-width: 5px;
-$hour-height: $alarm-size / 2 * .4;
-$minute-height: $alarm-size / 2 * .6;
-$second-height: $alarm-size / 2 * .8;
-$center-size: $alarm-size / 10;
-
-$back-color: rgba(0, 0, 0, .45);
-$front-color: rgb(255, 255, 255);
-$hour-color: rgb(225, 225, 225);
-$minute-color: rgb(200, 200, 200);
-$second-color: rgb(255, 0, 0);
+$center-size: 20px;
 
 .alarm-wrapper {
   position: relative;
-  width: $alarm-size;
-  height: $alarm-size;
-  background: $back-color;
 }
 .alarm-scale-box {
   position: absolute;
-  width: $alarm-size / 10;
-  height: $alarm-size / 2;
+  width: 10%;
+  height: 50%;
   left: 50%;
-  margin-left: -$alarm-size / 20;
+  margin-left: -5%;
 }
 .alarm-scale {
   position: absolute;
   left: 50%;
-  background: $front-color;
   width: $scale-width-1;
   height: $scale-height-1;
 }
@@ -82,7 +130,6 @@ $second-color: rgb(255, 0, 0);
 .alarm-number {
   position: absolute;
   left: 50%;
-  color: $front-color;
 }
 .center {
   position: absolute;
@@ -92,7 +139,6 @@ $second-color: rgb(255, 0, 0);
   width: $center-size;
   height: $center-size;
   border-radius: 50%;
-  background: $front-color;
 }
 .hour,
 .minute,
@@ -105,23 +151,17 @@ $second-color: rgb(255, 0, 0);
 
 .hour {
   width: $hour-width;
-  height: $hour-height;
   margin-left: -$hour-width / 2;
-  background: $hour-color;
   border-radius: 50% 50% 0 0;
 }
 .minute {
   width: $minute-width;
-  height: $minute-height;
   margin-left: -$minute-width / 2;
-  background: $minute-color;
   border-radius: 50% 50% 0 0;
 }
 .second {
   width: $second-width;
-  height: $second-height;
   margin-left: -$second-width / 2;
-  background: $second-color;
 }
 
 @for $i from 0 to 60 {
@@ -136,7 +176,7 @@ $second-color: rgb(255, 0, 0);
       transform: translate(-50%, 0);
     }
     .alarm-number {
-      transform: translate(-50%, 12px) rotate(#{-$i * 6}deg);
+      transform: translate(-50%, 15px) rotate(#{-$i * 6}deg);
     }
   }
 }
