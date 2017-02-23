@@ -2,6 +2,7 @@ import Home from './pages/common/home'
 import About from './pages/about/index'
 import Alarm from './pages/demos/alarm/index'
 import vModal from './pages/demos/v-modal/index'
+import v2048 from './pages/demos/my2048/index'
 
 const Abstract = {
   template: '<router-view></router-view>'
@@ -33,6 +34,12 @@ const routes = [
             name: 'vue-modal',
             isMenuItem: true,
             component: vModal
+          },
+          {
+            path: '2048',
+            name: '2048',
+            isMenuItem: true,
+            component: v2048
           }
         ]
       },
