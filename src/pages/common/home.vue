@@ -21,7 +21,7 @@
       </el-menu>
 
       <div class="nav-footer">
-        <a :href="link.targetUrl" class="social" v-for="link in socialLinks">
+        <a target="_blank" :href="link.targetUrl" class="social" v-for="link in socialLinks">
           <img :src="link.imgSrc">
         </a>
       </div>
