@@ -14,6 +14,7 @@
     "element-ui": "^1.1.2",
     "github-markdown-css": "^2.4.1",
     "marked": "^0.3.6",
+    "uuid": "^3.0.1",
     "vue": "^2.1.0",
     "vue-router": "^2.1.1"
   },

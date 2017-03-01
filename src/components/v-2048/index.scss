@@ -1,0 +1,18 @@
+$game-size: 450px;
+$back-color: #bbada0;
+$grid-box-color: rgba(238, 228, 218, 0.35);
+$game-padding: 20px;
+$tile-padding: 15px;
+$tile-size: ($game-size - ($game-padding * 2) - ($tile-padding * 3)) / 4;
+
+$tile-colors: #eee4da, // level 1
+              #ede0c8, // level 2
+              #f2b179, // level 3
+              #f59563, // level 4
+              #f67c5f, // level 5
+              #f65e3b, // level 6
+              #edcf72, // level 7
+              #edcc61, // level 8
+              #edc850, // level 9
+              #edc53f, // level 10
+              #edc22e, // level 11
